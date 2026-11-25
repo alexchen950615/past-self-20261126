@@ -14,6 +14,10 @@ ENTRY = (
 
 
 def main():
+    # Gate: the entry must be UTF-8 text of 1-280 characters, exactly two lines.
+    assert 1 <= len(ENTRY) <= 280, "entry must be 1-280 characters"
+    assert len(ENTRY.splitlines()) == 2, "entry must be exactly two lines"
+    assert ENTRY.strip(), "entry must not be only whitespace"
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
